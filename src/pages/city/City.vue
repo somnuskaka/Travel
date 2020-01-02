@@ -2,8 +2,8 @@
   <div>
     <city-header>国际/国内</city-header>
     <city-search></city-search>
-    <city-list :cities="cities" :hotCities="hotCities"></city-list>
-    <city-alphabet :cities="cities"></city-alphabet>
+    <city-list :cities="cities" :hotCities="hotCities" :letter="letter"></city-list>
+    <city-alphabet :cities="cities" @change="handletterchange" :letter="letter"></city-alphabet>
   </div>
 </template>
 <script>
@@ -23,7 +23,8 @@ export default {
   data (){
     return {
       cities:{},
-      hotCities:[]
+      hotCities:[],
+      letter:''
     }
   },
   methods:{
@@ -39,6 +40,9 @@ export default {
         this.hotCities=data.hotCities
       }
       console.log(res)
+    },
+    handletterchange(letter){
+      this.letter = letter
     }
   },
   mounted () {
