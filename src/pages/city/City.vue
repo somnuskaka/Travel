@@ -1,7 +1,7 @@
 <template>
   <div>
     <city-header>国际/国内</city-header>
-    <city-search></city-search>
+    <city-search :cities="cities"></city-search>
     <city-list :cities="cities" :hotCities="hotCities" :letter="letter"></city-list>
     <city-alphabet :cities="cities" @change="handletterchange" :letter="letter"></city-alphabet>
   </div>
