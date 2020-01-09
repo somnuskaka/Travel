@@ -1,13 +1,14 @@
 <template>
 <div>
-    <div class="serach serach-input">
+    <div class="serach">
         <input v-model="keyword" class="serach-input" type="text" placeholder="输入城市名或者拼音">
     </div>
     <div class="search-content" ref="search" v-show="keyword">
         <ul>
             <li class="search-item border-bottom" 
              v-for="item of list"
-             > {{item.name}} </li>
+             :key="item.id"
+             @click="handleCityClick(item.name)"> {{item.name}}</li>
             <li class="search-item border-bottom" 
             v-show="!list.length">
             没有找到匹配数据</li>
@@ -17,10 +18,14 @@
 </template>
 <script>
 import Bscroll from 'better-scroll'
+import { mapState, mapMutations } from 'vuex'
 export default {
     name:'CitySearch',
     props:{
         cities:Object
+    },
+    computed:{
+        ...mapState(['city'])
     },
     data (){
         return {
@@ -51,6 +56,13 @@ export default {
             }, 100)
         }
     },
+    methods:{
+    handleCityClick (city){
+      this.changeCity(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['changeCity'])
+  },
     mounted () {
         this.scroll = new Bscroll(this.$refs.search)
     }
