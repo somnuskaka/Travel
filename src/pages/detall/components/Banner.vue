@@ -1,13 +1,13 @@
 <template>
     <div>
         <div class="banner" @click="handleBannerClick">
-            <img class="banner-img" src="https://img1.qunarzz.com/vs_ceph_vs_tts/d992bf03-7438-4b05-b5c7-e56ca4e256ca.jpg_r_640x420x90_e7de13ce.jpg" alt="">
+            <img class="banner-img" :src="bannerImg" alt="">
             <div class="banner-info">
-                <div class="bannner-title">产品编号:2961226654</div>
-                <div class="banner-number"><span class="iconfont arrow-icon">&#xe60e;</span>39</div>
+                <div class="bannner-title"> {{this.sightName}} </div>
+                <div class="banner-number"><span class="iconfont arrow-icon">&#xe60e;</span> {{this.bannerImgs.length}} </div>
             </div>
         </div>
-        <common-gallary :imgs="imgs" v-show="showgallary" @close='hanfleGallaryClose'></common-gallary>
+        <common-gallary :imgs="bannerImgs" v-show="showgallary" @close='hanfleGallaryClose'></common-gallary>
     </div>
     
 </template>
@@ -15,11 +15,15 @@
 import CommonGallary from 'common/gallary/Gallary'
 export default {
     name:'DetallBanner',
+    props:{
+        sightName:String,
+        bannerImg:String,
+        bannerImgs:Array
+    },
     data () {
         return{ 
             showgallary:false, 
-            imgs:['https://img1.qunarzz.com/vs_ceph_vs_tts/d992bf03-7438-4b05-b5c7-e56ca4e256ca.jpg_r_640x420x90_e7de13ce.jpg',
-               'https://img1.qunarzz.com/vs_ceph_vs_tts/2b766a0a-8c1d-43c6-b50d-42fe3935e209.jpg_r_640x420x90_3a2effdb.jpg']
+            
      }
     },
     methods:{
